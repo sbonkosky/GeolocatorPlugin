@@ -369,8 +369,8 @@ namespace Plugin.Geolocator
         {
 
 
-			if (minimumDistance < 0)
-                throw new ArgumentOutOfRangeException(nameof(minimumDistance));
+			//if (minimumDistance < 0)
+            //    throw new ArgumentOutOfRangeException(nameof(minimumDistance));
 
             if (isListening)
                 throw new InvalidOperationException("Already listening");
@@ -402,7 +402,7 @@ namespace Plugin.Geolocator
 			// keep reference to settings so that we can stop the listener appropriately later
 			this.listenerSettings = listenerSettings;
 
-            var desiredAccuracy = DesiredAccuracy;
+            //var desiredAccuracy = DesiredAccuracy;
 
 // set background flag
 #if __IOS__
@@ -434,14 +434,14 @@ namespace Plugin.Geolocator
 
             // to use deferral, CLLocationManager.DistanceFilter must be set to CLLocationDistance.None, and CLLocationManager.DesiredAccuracy must be 
             // either CLLocation.AccuracyBest or CLLocation.AccuracyBestForNavigation. deferral only available on iOS 6.0 and above.
-            if (CanDeferLocationUpdate && listenerSettings.DeferLocationUpdates)
-            {
-                minimumDistance = CLLocationDistance.FilterNone;
-                desiredAccuracy = CLLocation.AccuracyBest;
-            }
+            //if (CanDeferLocationUpdate && listenerSettings.DeferLocationUpdates)
+            //{
+            //    minimumDistance = CLLocationDistance.FilterNone;
+            //    desiredAccuracy = CLLocation.AccuracyBest;
+            //}
 
             isListening = true;
-            manager.DesiredAccuracy = desiredAccuracy;
+            manager.DesiredAccuracy = DesiredAccuracy;
             manager.DistanceFilter = minimumDistance;
 
 #if __IOS__ || __MACOS__
